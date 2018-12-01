@@ -22,7 +22,7 @@ export default class {
 
   _doPing() {
     this._client._trace('Pinger.doPing', 'send PINGREQ');
-    this._client.socket && this._client.socket.send(this.pingReq);
+    this._client.connected && this._client.socket && (this._client.socket.readyState===1) && this._client.socket.send(this.pingReq);
     this.timeout = setTimeout(() => this._doPing(), this._keepAliveIntervalMs);
   }
 
